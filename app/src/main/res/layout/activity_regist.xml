@@ -22,7 +22,7 @@
         android:layout_height="@dimen/inputViewHeight"
         android:layout_marginTop="@dimen/marginSize1"
         app:input_icon="@mipmap/phone"
-        app:input_hint="手机号"
+        app:input_hint="请输入手机号"
         app:is_password="false"></com.example.musicplayer.views.InputView>
 
     <View
@@ -33,27 +33,28 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/inputViewHeight"
         app:input_icon="@mipmap/password"
-        app:input_hint="密码"
+        app:input_hint="请输入密码"
+        app:is_password="true"></com.example.musicplayer.views.InputView>
+
+    <View
+        style="@style/line"/>
+    <com.example.musicplayer.views.InputView
+        android:id="@+id/input_password_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/inputViewHeight"
+        app:input_icon="@mipmap/password"
+        app:input_hint="请确认密码"
         app:is_password="true"></com.example.musicplayer.views.InputView>
 
     <View
         style="@style/line"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/marginSize"
-        android:text="立即注册"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/infoSize"
-        android:textColor="@color/mainColor"
-        android:onClick="onRegisterClick"/>
 
     <Button
         style="@style/commitBtn"
-        android:text="登  录"
+        android:text="注  册"
         android:layout_marginTop="@dimen/marginSize1"
-        android:onClick="onCommitClick"
+        android:onClick="onRegisterClick"
         />
 
 </LinearLayout>

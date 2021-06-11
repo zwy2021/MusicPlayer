@@ -16,5 +16,6 @@
 <!--        <item name="colorPrimaryDark">@color/mainColor</item>-->
 <!--        另一种写法，且此种优先级更高，android5.0以下版本会出警告，且默认情况下此值会继承自colorPrimaryDark-->
         <item name="android:statusBarColor">@color/mainColor</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
     </style>
 </resources>

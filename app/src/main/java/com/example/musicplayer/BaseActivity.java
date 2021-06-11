@@ -1,11 +1,14 @@
 package com.example.musicplayer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.IdRes;
+
+import com.example.musicplayer.activities.MeActivity;
 
 //描述Activity类的共性，是项目中所有Activity类的父类
 public class BaseActivity extends Activity {
@@ -38,6 +41,13 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        mIvMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BaseActivity.this, MeActivity.class));
             }
         });
 
