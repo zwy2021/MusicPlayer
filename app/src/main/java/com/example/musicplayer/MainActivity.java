@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.musicplayer.R;
 import com.example.musicplayer.adapters.MusicGridAdapter;
+import com.example.musicplayer.views.GridSpaceItemDecoration;
 
 public class MainActivity extends BaseActivity {
 
@@ -26,6 +27,7 @@ public class MainActivity extends BaseActivity {
         initNavBar(false,"音乐",true);
         mRvGrid=fd(R.id.rv_grid);
         mRvGrid.setLayoutManager(new GridLayoutManager(this,3));
+        mRvGrid.addItemDecoration(new GridSpaceItemDecoration(getResources().getDimensionPixelOffset(R.dimen.albumMarginSize),mRvGrid));
         mAdapter= new MusicGridAdapter(this);
 
         mRvGrid.setAdapter(mAdapter);
