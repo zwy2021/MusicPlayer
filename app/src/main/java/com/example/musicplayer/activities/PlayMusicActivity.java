@@ -38,7 +38,7 @@ public class PlayMusicActivity extends BaseActivity {
                 .into(mIvBg);
         mPlayMusicView=fd(R.id.play_music_view);
         mPlayMusicView.setMusicIcon("https://img9.doubanio.com/view/group_topic/raw/public/p250046415.jpg");
-        mPlayMusicView.playMusic();
+        mPlayMusicView.playMusic("http://m801.music.126.net/20210612194323/978c620db98cba5e0c0a0804b52afea0/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/8619521269/1734/16e7/a563/75c41c7eefae6aa2e27f94d4975f98d0.mp3");
 
     }
 

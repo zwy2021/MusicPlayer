@@ -2,6 +2,7 @@ package com.example.musicplayer.views;
 
 import android.content.Context;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -17,11 +18,14 @@ import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
 import com.example.musicplayer.R;
+import com.example.musicplayer.helps.MediaPlayHelp;
 
 public class PlayMusicView extends FrameLayout {
     private Context mContext;
     private View mView;
+    private String mPath;
     private boolean isPlaying;
+    private MediaPlayHelp mMediaPlayerHelp;
     private Animation mPlayMusicAnim,mPlayNeedleAnim,mStopNeedleAnim;
     private ImageView mIvIcon,mIvNeedle,mIvPlay;
     private FrameLayout mFlPlayMusic;
@@ -73,21 +77,36 @@ public class PlayMusicView extends FrameLayout {
 
 
         addView(mView);
+
+        mMediaPlayerHelp=MediaPlayHelp.getInstance(mContext);
     }
 
     private void trigger(){
         if(isPlaying){
             stopMusic();
         }else{
-            playMusic();
+            playMusic(mPath);
         }
     }
 
-    public void playMusic(){
+    public void playMusic(String path){
+        mPath=path;
         isPlaying=true;
         mIvPlay.setVisibility(View.GONE);
         mFlPlayMusic.startAnimation(mPlayMusicAnim);
         mIvNeedle.startAnimation(mPlayNeedleAnim);
+
+        if(mMediaPlayerHelp.getPath()!=null&&mMediaPlayerHelp.getPath().equals(path)){
+            mMediaPlayerHelp.start();
+        }else{
+            mMediaPlayerHelp.setPath(path);
+            mMediaPlayerHelp.setOnMediaPlayerHelperListener(new MediaPlayHelp.OnMediaPlayerHelperListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mMediaPlayerHelp.start();
+                }
+            });
+        }
     }
 
     public void stopMusic(){
@@ -95,6 +114,8 @@ public class PlayMusicView extends FrameLayout {
         mIvPlay.setVisibility(View.VISIBLE);
         mFlPlayMusic.clearAnimation();
         mIvNeedle.startAnimation(mStopNeedleAnim);
+
+        mMediaPlayerHelp.pause();
     }
 
 
