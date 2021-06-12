@@ -38,6 +38,8 @@ public class PlayMusicActivity extends BaseActivity {
                 .into(mIvBg);
         mPlayMusicView=fd(R.id.play_music_view);
         mPlayMusicView.setMusicIcon("https://img9.doubanio.com/view/group_topic/raw/public/p250046415.jpg");
+        mPlayMusicView.playMusic();
+
     }
 
     public void onBackClick(View view){

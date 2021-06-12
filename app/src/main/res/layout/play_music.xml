@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <!--光盘-->
     <FrameLayout
+        android:id="@+id/fl_play_music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/discTopSize">
@@ -25,6 +26,7 @@
             />
 
         <ImageView
+            android:id="@+id/iv_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/play_music"
@@ -33,6 +35,7 @@
     </FrameLayout>
 <!--指针-->
     <ImageView
+        android:id="@+id/iv_needle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/needle"
