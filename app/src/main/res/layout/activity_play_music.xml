@@ -13,6 +13,14 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/img1"/>
 
+    <com.example.musicplayer.views.PlayMusicView
+        android:id="@+id/play_music_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        ></com.example.musicplayer.views.PlayMusicView
+        >
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

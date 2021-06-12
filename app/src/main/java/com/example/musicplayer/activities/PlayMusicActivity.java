@@ -11,11 +11,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.musicplayer.BaseActivity;
 import com.example.musicplayer.R;
+import com.example.musicplayer.views.PlayMusicView;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class PlayMusicActivity extends BaseActivity {
 
+    private PlayMusicView mPlayMusicView;
     private ImageView mIvBg;
 
     @Override
@@ -34,6 +36,8 @@ public class PlayMusicActivity extends BaseActivity {
                 .load("https://img9.doubanio.com/view/group_topic/raw/public/p250046415.jpg")
                 .apply(RequestOptions.bitmapTransform(new BlurTransformation(25,10)))
                 .into(mIvBg);
+        mPlayMusicView=fd(R.id.play_music_view);
+        mPlayMusicView.setMusicIcon("https://img9.doubanio.com/view/group_topic/raw/public/p250046415.jpg");
     }
 
     public void onBackClick(View view){
