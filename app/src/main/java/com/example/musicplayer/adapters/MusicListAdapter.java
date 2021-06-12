@@ -1,6 +1,7 @@
 package com.example.musicplayer.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.musicplayer.R;
+import com.example.musicplayer.activities.PlayMusicActivity;
 
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder>{
 
@@ -39,7 +41,13 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         Glide.with(mContext)
                 .load("https://img9.doubanio.com/view/group_topic/raw/public/p250046415.jpg")
                 .into(holder.ivIcon);
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PlayMusicActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -69,10 +77,11 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivIcon;
+        View itemView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            this.itemView=itemView;
             ivIcon=itemView.findViewById(R.id.iv_icon);
         }
     }
