@@ -44,11 +44,11 @@ public class LoginActivity extends BaseActivity {
     public void onCommitClick(View v){
         String phone=mInputPhone.getInputStr();
         String password = mInputPassword.getInputStr();
-        //验证
-//        if(!UserUtil.validateLogin(this,phone,password)){
-//            return;
-//        }
-        //验证成功，跳转到主页
+//        验证
+        if(!UserUtil.validateLogin(this,phone,password)){
+            return;
+        }
+//        验证成功，跳转到主页
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

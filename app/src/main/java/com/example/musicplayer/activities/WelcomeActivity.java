@@ -9,6 +9,7 @@ import android.util.Log;
 import com.example.musicplayer.BaseActivity;
 import com.example.musicplayer.MainActivity;
 import com.example.musicplayer.R;
+import com.example.musicplayer.utils.UserUtil;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,13 +32,15 @@ public class WelcomeActivity extends BaseActivity {
      * 初始化
      */
     private void init() {
+        boolean isLogin = UserUtil.validateUserLogin(this);
         mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
             @Override
-            public void run() {
-//                Log.e("WelcomeActivity","当前线程为："+Thread.currentThread());
-//                toMain();
-                toLogin();
+            public void run() {                if (isLogin){
+                    toMain();
+                }else{
+                    toLogin();
+                }
             }
         },3*1000);
     }
