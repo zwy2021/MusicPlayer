@@ -130,4 +130,30 @@ public class UserUtil {
     public static boolean validateUserLogin(Context context){
         return SPUtils.isLoginUser(context);
     }
+
+    /**
+     * 修改密码验证
+     * 1.原密码正确输入
+     * 2.新密码输入且与确定密码相同
+     */
+    public static boolean changePassword(Context context, String oldPassword, String password,String passwordConfirm){
+        if(TextUtils.isEmpty(oldPassword)){
+            Toast.makeText(context,"请输入原密码",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(TextUtils.isEmpty(password)||!password.equals(passwordConfirm)){
+            Toast.makeText(context,"请确认密码",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        RealmHelper realmHelper = new RealmHelper();
+        UserModel userModel = realmHelper.getUser();
+
+        if (!EncryptUtils.encryptMD5ToString(oldPassword).equals(userModel.getPassword())){
+            Toast.makeText(context,"原密码不正确",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        realmHelper.changePassword(EncryptUtils.encryptMD5ToString(password));
+        realmHelper.close();
+        return true;
+    }
 }

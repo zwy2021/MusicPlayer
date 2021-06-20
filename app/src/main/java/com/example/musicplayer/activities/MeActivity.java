@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.musicplayer.BaseActivity;
 import com.example.musicplayer.R;
+import com.example.musicplayer.helps.UserHelper;
 import com.example.musicplayer.utils.UserUtil;
 
 public class MeActivity extends BaseActivity {
+    private TextView mTvUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,8 @@ public class MeActivity extends BaseActivity {
 
     private void initView() {
         initNavBar(true,"个人中心",false);
+        mTvUser=fd(R.id.tv_user);
+        mTvUser.setText("用户名"+ UserHelper.getInstance().getPhone());
     }
 /**
  * 修改密码
