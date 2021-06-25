@@ -1,10 +1,19 @@
 package com.example.musicplayer.helps;
 
-import com.example.musicplayer.models.UserModel;
+import android.content.Context;
 
+import com.example.musicplayer.migration.Migration;
+import com.example.musicplayer.models.AlbumModel;
+import com.example.musicplayer.models.MusicModel;
+import com.example.musicplayer.models.MusicSourceModel;
+import com.example.musicplayer.models.UserModel;
+import com.example.musicplayer.utils.DataUtils;
+
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -19,7 +28,21 @@ public class RealmHelper {
             mRealm.close();
         }
     }
+    public static void migration(){
+        RealmConfiguration conf = getRealmConf();
+        Realm.setDefaultConfiguration(conf);
+        try {
+            Realm.migrateRealm(conf);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private static RealmConfiguration getRealmConf(){
+        return new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .migration(new Migration()).build();
+    }
     public RealmHelper() {
         this.mRealm = Realm.getDefaultInstance();
     }
@@ -64,4 +87,20 @@ public class RealmHelper {
         userModel.setPassword(password);
         mRealm.commitTransaction();
     }
+    public void setMusicSource(Context context){
+        String musicSourceJson = DataUtils.getJsonFromAssets(context, "DataSource.json");
+        mRealm.beginTransaction();
+        mRealm.createObjectFromJson(MusicSourceModel.class,musicSourceJson);
+        mRealm.commitTransaction();
+    }
+
+    public void removeMusicSource(){
+        mRealm.beginTransaction();
+        mRealm.delete(MusicSourceModel.class);
+        mRealm.delete(MusicModel.class);
+        mRealm.delete(AlbumModel.class);
+        mRealm.commitTransaction();
+    }
+
+
 }

@@ -40,7 +40,6 @@ public class UserUtil {
         }
         RealmHelper realmHelper = new RealmHelper();
         boolean result = realmHelper.validateUser(phone, EncryptUtils.encryptMD5ToString(password));
-        realmHelper.close();
         if (!result){
             Toast.makeText(context,"手机号或密码不正确",Toast.LENGTH_SHORT).show();
             return false;
@@ -52,6 +51,10 @@ public class UserUtil {
         }
 //在全局单例里保存用户标记
         UserHelper.getInstance().setPhone(phone);
+
+        realmHelper.setMusicSource(context);
+        realmHelper.close();
+
         return true;
     }
     /**
@@ -64,6 +67,9 @@ public class UserUtil {
             return;
         }
 
+        RealmHelper realmHelper = new RealmHelper();
+        realmHelper.removeMusicSource();
+        realmHelper.close();
         Intent intent=new Intent(context, LoginActivity.class);
         //清理intent标志符，清理task栈，并生成新的task栈
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
