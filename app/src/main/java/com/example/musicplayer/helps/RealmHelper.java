@@ -101,6 +101,15 @@ public class RealmHelper {
         mRealm.delete(AlbumModel.class);
         mRealm.commitTransaction();
     }
+    public MusicSourceModel getMusicSource(){
+        return mRealm.where(MusicSourceModel.class).findFirst();
+    }
 
+    public AlbumModel getAlbum(String albumId){
+        return mRealm.where(AlbumModel.class).equalTo("albumId",albumId).findFirst();
+    }
 
+    public MusicModel getMusic(String musicId){
+        return mRealm.where(MusicModel.class).equalTo("musicId",musicId).findFirst();
+    }
 }

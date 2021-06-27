@@ -39,10 +39,10 @@ public class MediaPlayHelp {
 
     public void setPath(String path){
 
-        mPath=path;
-        if(mMediaPlayer.isPlaying()){
+        if(mMediaPlayer.isPlaying()||!path.equals(mPath)){
             mMediaPlayer.reset();
         }
+        mPath=path;
 
         try {
             mMediaPlayer.setDataSource(mContext, Uri.parse(path));

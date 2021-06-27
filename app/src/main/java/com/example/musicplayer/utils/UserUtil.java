@@ -30,6 +30,10 @@ public class UserUtil {
             Toast.makeText(context,"请输入密码",Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (password.length()<6){
+            Toast.makeText(context,"密码长度至少为六位",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         /**
          * 注册时账户已存在检验
          *
